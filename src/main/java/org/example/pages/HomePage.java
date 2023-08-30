@@ -1,6 +1,7 @@
 package org.example.pages;
 
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,8 +18,14 @@ public class HomePage {
     }
 
     //Locators
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//a[@href =\"/login\"]")
     WebElement login;
+
+    @FindBy(xpath = "//a[text()=' Logged in as ']")
+    WebElement loggedInAsTitle;
+
+    @FindBy(xpath = "//a[@href =\"/delete_account\"]")
+    WebElement deleteAccount;
 
 
     //Methods
@@ -31,9 +38,15 @@ public class HomePage {
         login.click();
     }
 
+    public void checkloggedInAsTitleIsVisisble() {
+        Assertions.assertTrue(loggedInAsTitle.isDisplayed(),"Элемент Logged IN AS не отображается");
 
+    }
+    public void clickDeleteAccount() {
+        deleteAccount.click();
+    }
     public void tearDown() {
-        driver.quit();
+
     }
 
 
